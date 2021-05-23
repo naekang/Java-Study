@@ -1,39 +1,51 @@
 package com.company.design;
 
 import com.company.design.adapter.*;
+import com.company.design.aop.AopBrowser;
+import com.company.design.proxy.Browser;
+import com.company.design.proxy.BrowserProxy;
+import com.company.design.proxy.IBrowser;
 import com.company.design.singleton.AClazz;
 import com.company.design.singleton.BClazz;
 import com.company.design.singleton.SocketClient;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 public class Main {
 
     public static void main(String[] args) {
-//	// Singleton Pattern Example
-//
-//        AClazz aClazz = new AClazz();
-//        BClazz bClazz = new BClazz();
-//
-//        SocketClient aClient = aClazz.getSocketClient();
-//        SocketClient bClient = bClazz.getSocketClient();
-//
-//        System.out.println("두개의 객체가 동일한가?");
-//        System.out.println(aClient.equals(bClient));
+//        Browser browser = new Browser("www.naver.com");
+//        browser.show();
+//        browser.show();
+//        browser.show();
+//        browser.show();
 
-        // Adapter design pattern
-        HairDryer hairDryer = new HairDryer();
-        connect(hairDryer);
+//        IBrowser browser = new BrowserProxy("www.naver.com");
+//        browser.show();
+//        browser.show();
+//        browser.show();
+//        browser.show();
+//        browser.show();
 
-        // 220v를 상속받았기 떄문에 문제가 생김
-        Cleaner cleaner = new Cleaner();
-        // 어댑터 사오기
-        Electronic110V adapter = new SocketAdapter(cleaner);
+        AtomicLong start = new AtomicLong();
+        AtomicLong end = new AtomicLong();
 
-        Airconditioner airconditioner = new Airconditioner();
-        Electronic110V airAdapter = new SocketAdapter(airconditioner);
+        IBrowser aopBrowser = new AopBrowser("www.naver.com",
+                ()->{
+                    System.out.println("before");
+                    start.set(System.currentTimeMillis());
+                },
+                ()->{
+                    long now = System.currentTimeMillis();
+                    end.set(now - start.get());
+                }
+        );
 
-        connect(airAdapter);
+        aopBrowser.show();
+        System.out.println("loading time : " + end.get());
 
-//        connect(cleaner);
+        aopBrowser.show();
+        System.out.println("loading time : " + end.get());
     }
 
     // 콘센트
