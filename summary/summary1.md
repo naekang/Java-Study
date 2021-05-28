@@ -26,3 +26,8 @@ CONNECT|프록시 동작의 터널 접속으로 변경|-|X|-|-|-|-
 - `@PutMapping`: Put Resource 설정
 - `@RequestBody`: Request Body 부분 Parsing
 - `@PathVariable`: URL Path Variable
+
+- `DeleteMapping`: Delete Resource 설정
+- `RequestParam`: URL Query Param Pasing
+- `PathVariable`: URL Path Variable Parsing
+- Object: Query Param Object로 Parsing
