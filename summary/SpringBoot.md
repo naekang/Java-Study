@@ -30,4 +30,4 @@ CONNECT|프록시 동작의 터널 접속으로 변경|-|X|-|-|-|-
 - `DeleteMapping`: Delete Resource 설정
 - `RequestParam`: URL Query Param Pasing
 - `PathVariable`: URL Path Variable Parsing
-- Object: Query Param Object로 Parsing
+- `Object`: Query Param Object로 Parsing
